@@ -116,3 +116,36 @@ input[type="text"] {
     color: #e74c3c;
     text-align: center;
 }
+.books-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.book-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-card h3 {
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+.btn.small {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+.error-msg {
+    margin-top: 10px;
+    color: #e74c3c;
+    font-size: 0.85rem;
+    text-align: center;
+}
