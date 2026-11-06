@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("login-form");
     const loginSection = document.getElementById("login-section");
@@ -18,15 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const bookTitleHeader = document.getElementById("book-title-header");
     const bookContent = document.getElementById("book-content");
 
-    // Simulación de "Base de Datos" de códigos válidos provistos por la bibliotecaria
-    // Estos códigos se pueden usar UNA sola vez.
+    // Base de datos local de códigos de un solo uso
     let codigosValidos = JSON.parse(localStorage.getItem("codigos_biblioteca")) || [
         { codigo: "123456", usado: false },
         { codigo: "654321", usado: false },
         { codigo: "111222", usado: false }
     ];
 
-    // Catálogo de libros (Aquí podés sumar el que digitalices con Adobe Scan)
+    // Catálogo de libros
     const catalogoLibros = [
         { id: 1, titulo: "Matemática Aplicada - 5to Año", paginas: ["Página 1: Introducción a funciones.", "Página 2: Límites y tendencias.", "Página 3: Ejercicios prácticos."] },
         { id: 2, titulo: "Antología de Poesía Urbana (¡Burzt!)", paginas: ["Página 1: Versos de asfalto.", "Página 2: Luces de neón en la ciudad.", "Página 3: Voces periféricas."] },
@@ -42,15 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const codigoIngresado = document.getElementById("codigo").value.trim();
-
-        // Buscar el código en nuestra "base de datos" local
         let registroCodigo = codigosValidos.find(c => c.codigo === codigoIngresado);
 
         if (registroCodigo) {
             if (registroCodigo.usado) {
                 loginError.textContent = "❌ Este código ya fue utilizado anteriormente.";
             } else {
-                // Marcar como usado (Tachar / Invalidar para futuros usos)
                 registroCodigo.usado = true;
                 localStorage.setItem("codigos_biblioteca", JSON.stringify(codigosValidos));
 
@@ -72,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.className = "book-card";
             card.innerHTML = `
                 <h3>📖 ${libro.titulo}</h3>
-                <button class="btn small" onclick="abrirLibro(${libro.id})">Leer Libro</button>
+                <button class="btn small" type="button" onclick="abrirLibro(${libro.id})">Leer Libro</button>
             `;
             booksList.appendChild(card);
         });
