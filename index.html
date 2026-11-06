@@ -3,40 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Escolar Alternativa - Burzt!</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Biblioteca Virtual Escolar - Burzt!</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 
     <div class="container">
         <!-- Encabezado -->
         <header>
-            <h1> Biblioteca Virtual Escolar</h1>
+            <h1>📚 Biblioteca Virtual Escolar</h1>
             <p>Tu punto de encuentro a lo alternativo</p>
         </header>
 
-        <!-- Sección de Autenticación (Login) -->
+        <!-- Sección de Autenticación (Login con Código Único) -->
         <section id="login-section" class="card">
             <h2>Acceso Alumnos</h2>
             <p>Ingresá tu código único de 6 dígitos provisto por la bibliotecaria.</p>
             <form id="login-form">
-                <input type="text" id="codigo" placeholder="Ej: 485912" maxlength="6" required>
-                <button type="submit" class="btn">Ingresar</button>
+                <input type="text" id="codigo" placeholder="Ej: 123456" maxlength="6" required>
+                <button type="submit" class="btn">Ingresar con Código</button>
             </form>
+            <p id="login-error" class="error-msg"></p>
         </section>
 
-        <!-- Sección de Lectura (Simulada para Visitantes / Suscriptores) -->
+        <!-- Sección del Menú de Libros (Catálogo) -->
+        <section id="catalog-section" class="card hidden">
+            <h2>Catálogo de Libros</h2>
+            <p>Seleccioná un libro para comenzar a leer:</p>
+            <div id="books-list" class="books-grid">
+                <!-- Los libros se cargan dinámicamente desde JavaScript -->
+            </div>
+        </section>
+
+        <!-- Sección de Lectura -->
         <section id="reader-section" class="card hidden">
-            <h2>Leyendo: <em>Introducción a la Programación</em></h2>
+            <button id="back-to-catalog" class="btn secondary small">⬅ Volver al catálogo</button>
+            <h2 id="book-title-header" style="margin-top: 15px;">Leyendo libro</h2>
             <div id="book-viewer" class="viewer-box">
-                <p>Página <span id="current-page">1</span> de un total de 150.</p>
-                <p class="book-text">Aquí se mostraría el contenido de la página del libro seleccionado...</p>
+                <p>Página <span id="current-page">1</span> de <span id="total-pages">10</span>.</p>
+                <p id="book-content" class="book-text">Cargando contenido de la página...</p>
             </div>
             <div class="controls">
                 <button id="prev-btn" class="btn secondary">Anterior</button>
                 <button id="next-btn" class="btn">Siguiente página</button>
             </div>
-            <p id="visitor-warning" class="warning"> Modo Visitante: Te quedan <span id="pages-left">10</span> páginas este mes.</p>
+            <p id="visitor-warning" class="warning">⚠️ Modo Visitante: Te quedan <span id="pages-left">10</span> páginas este mes.</p>
         </section>
     </div>
 
